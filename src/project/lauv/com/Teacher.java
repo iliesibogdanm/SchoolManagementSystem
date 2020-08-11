@@ -68,4 +68,5 @@ public class Teacher {
     public static void setSalary(double salary) {
         Teacher.salary = salary;
     }
+
 }

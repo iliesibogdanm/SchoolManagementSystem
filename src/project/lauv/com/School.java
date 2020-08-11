@@ -196,9 +196,6 @@ public class School{
         }
 
     }
-    /**
-     * Text menu for the Administration Menu.Requires password(not implemented yet).
-     */
     public void adminMenu() throws IOException {
         System.out.println("Please enter admin password:");
         Scanner scanner = new Scanner(System.in);
@@ -251,7 +248,7 @@ public class School{
             System.out.println("Invalid password");
         }
     }
-        public void editMenuStudent() throws IOException {
+    public void editMenuStudent() throws IOException {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Choose what to edit: ");
             System.out.println("======================");
@@ -295,36 +292,36 @@ public class School{
             replaceInfo(listForReplacement.get(0), listForReplacement.get(1));
             adminMenu();
         }
-        public void editMenuTeach() throws IOException {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Choose what to edit: ");
-            System.out.println("======================");
-            System.out.println("1.Name:");
-            System.out.println("2.Salary:");
-            System.out.println("=====Q to MainMenu====");
-            String selection = scanner.nextLine();
-            if (selection.equals("1")) {
-                Scanner scannerEdit = new Scanner(System.in);
-                System.out.println("Please enter new name:");
-                System.out.println("First name:");
-                Teacher.setFirstName(scannerEdit.nextLine());
-                System.out.println("Last name:");
-                Teacher.setLastName(scannerEdit.nextLine());
-                editMenuTeach();
-            }
-            else if (selection.equals("2")) {
-                Scanner scannerEdit = new Scanner(System.in);
-                System.out.println("Please enter new salary:");
-                Teacher.setSalary(scannerEdit.nextDouble());
-                editMenuTeach();
-            }
+    public void editMenuTeach() throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Choose what to edit: ");
+        System.out.println("======================");
+        System.out.println("1.Name:");
+        System.out.println("2.Salary:");
+        System.out.println("=====Q to MainMenu====");
+        String selection = scanner.nextLine();
+        if (selection.equals("1")) {
+            Scanner scannerEdit = new Scanner(System.in);
+            System.out.println("Please enter new name:");
+            System.out.println("First name:");
+            Teacher.setFirstName(scannerEdit.nextLine());
+            System.out.println("Last name:");
+            Teacher.setLastName(scannerEdit.nextLine());
+            editMenuTeach();
+        }
+        else if (selection.equals("2")) {
+            Scanner scannerEdit = new Scanner(System.in);
+            System.out.println("Please enter new salary:");
+            Teacher.setSalary(scannerEdit.nextDouble());
+            editMenuTeach();
+        }
 
 
-            System.out.println("Info updated!");
-            listForReplacement.add(Teacher.toStringr());
+        System.out.println("Info updated!");
+        listForReplacement.add(Teacher.toStringr());
 //            System.out.println(listForReplacement.get(0));
 //            System.out.println(listForReplacement.get(1));
-            replaceInfoTeacher(listForReplacement.get(0),listForReplacement.get(1));
+        replaceInfoTeacher(listForReplacement.get(0),listForReplacement.get(1));
     }
 
 
