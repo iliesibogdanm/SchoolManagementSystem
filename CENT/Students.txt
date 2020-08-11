@@ -3,3 +3,8 @@ ID:213372098LastName:SarmasagFirstName:AndreeaCourses: MATH101, BIO101, HISTORY1
 ID:113502121LastName:Cristos FirstName:Iisus Courses: MATH101, BIO101, HISTORY101,Grade:1 Balance:1200
 ID:216482125LastName:Sfetanescu FirstName:Dumitrescu Courses:Grade:1 Balance:100
 ID:316482142LastName:Vasile FirstName:Dumitrecu Courses:Grade:3 Balance:0
+
+
+
+baga-ma pola
+
