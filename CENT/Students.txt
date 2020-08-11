@@ -6,5 +6,5 @@ ID:316482142LastName:Vasile FirstName:Dumitrecu Courses:Grade:3 Balance:0
 
 
 
-baga-ma pola
+baga-ma pola in mota
 
