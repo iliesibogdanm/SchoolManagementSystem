@@ -5,6 +5,3 @@ ID:216482125LastName:Sfetanescu FirstName:Dumitrescu Courses:Grade:1 Balance:100
 ID:316482142LastName:Vasile FirstName:Dumitrecu Courses:Grade:3 Balance:0
 
 
-
-baga-ma pola in mota
-
