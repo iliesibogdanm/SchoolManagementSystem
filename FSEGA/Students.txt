@@ -1,0 +1,2 @@
+ID:315282082LastName:IliesiFirstName:BogdanCourses: MATH101,BIO101, Grade:3 Balance:1400
+ID:215302101LastName:IvanoviciFirstName:FrancescaCourses: MATH101,BIO101,ENGLISH101, Grade:2 Balance:1800
