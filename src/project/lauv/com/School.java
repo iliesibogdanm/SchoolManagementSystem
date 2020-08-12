@@ -223,9 +223,11 @@ public class School{
                 case"2":{
                     searchNameTeach();
                     editMenuTeach();
+                    break;
                 }
                 case"3":{
                     removeTeacher();
+                    break;
                 }
                 case"4": {
                     searchID();
@@ -236,10 +238,12 @@ public class School{
                     } else if (selection.equals("N")) {
                         adminMenu();
                     }
+                    break;
                 }
                 case"5": {
                     searchID();
                     editMenuStudent();
+                    break;
                 }
                 case"6":{}
                 case"7":{}
@@ -515,13 +519,12 @@ public class School{
                     System.out.println("Valid Name.");
                     System.out.println("Initializing teacher!");
                     String[] teacher=line.split("ID:|LastName:|FirstName:|EmploymentDate:|Salary:");
-                    System.out.println(Arrays.toString(teacher));
-                    System.out.println(teacher[0]+"==teacher 0");
-                    System.out.println(teacher[1]+"==teacher 1");
-                    System.out.println(teacher[2]+"==teacher 2");
-                    System.out.println(teacher[3]+"==teacher 3");
-                    System.out.println(teacher[4]+"==teacher 4");
-
+//                    System.out.println(Arrays.toString(teacher));
+//                    System.out.println(teacher[0]+"==teacher 0");
+//                    System.out.println(teacher[1]+"==teacher 1");
+//                    System.out.println(teacher[2]+"==teacher 2");
+//                    System.out.println(teacher[3]+"==teacher 3");
+//                    System.out.println(teacher[4]+"==teacher 4");
                     String idGen =teacher[1];
                     String firstNameGen = teacher[3];
                     String lastNameGen = teacher[2];
@@ -532,8 +535,7 @@ public class School{
                     listForReplacement.add(line);
 //                    System.out.println("Teacher object is transformed to string and is imported in the String list");
 //                    System.out.println("This will be the object that will be replaced in the text file.");
-                    System.out.println(line);
-                    return;
+//                    System.out.println(line);
                 }
                 if (!id.hasNextLine()){
                     System.out.println("ID/Name does not exist.");
