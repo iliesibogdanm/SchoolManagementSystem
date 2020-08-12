@@ -85,7 +85,7 @@ public  class Student{
      /**
      *      The method asks the user the ammount to be paid , then updates the balance with the difference.
      */
-    public static void payCourses(){
+    public static int payCourses(){
 
         Scanner scanner=new Scanner(System.in);
         viewBalance();
@@ -100,6 +100,7 @@ public  class Student{
             System.out.println("Thank you for your payment!");
         }
         viewBalance();
+            return a;
     }
      /**
      * Print all info of the student

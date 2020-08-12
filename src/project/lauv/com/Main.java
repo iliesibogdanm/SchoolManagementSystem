@@ -5,9 +5,8 @@ import java.io.IOException;
 
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        School school = new School();
-        school.menu();
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        School.searchSchool();
 
     }
 

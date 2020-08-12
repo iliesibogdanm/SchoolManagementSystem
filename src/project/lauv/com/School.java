@@ -5,13 +5,12 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class School{
+public class School implements Serializable{
     private int budget = 0;
     private int moneyEarned;
     private int moneySpent;
@@ -19,20 +18,82 @@ public class School{
     List<String>listForReplacement=new ArrayList<String>();
 
     public School() throws IOException {
+        System.out.println("New school is being initialized!");
+        budget = 1000;
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("please enter school name:");
+//        name=scanner.nextLine();
+//        Path path = Paths.get("C:\\Users\\ilies\\IdeaProjects\\studentteacherproj\\"+name+"\\");
+
+//        if (Files.notExists(path)){
+//            Files.createDirectories(path);
+//            System.out.println("Checking for school directory...");
+//            System.out.println("None found.");
+//            System.out.println("Creating new school directory!");
+//            File students = new File(path+"\\Students.txt");
+//            students.createNewFile();
+//            File teachers = new File(path+"\\Teachers.txt");
+//            teachers.createNewFile();
+//        }
+//        else if(Files.exists(path)){
+//
+//            System.out.println("Checking for school directory...");
+//            System.out.println("Directory found!");
+//
+//            File s = new File("C:\\Users\\ilies\\IdeaProjects\\studentteacherproj\\" + School.getName() + "\\Students.txt");
+//            if (s.exists()) {
+//                System.out.println("Student file location found by file reader");
+//            } else {
+//                System.out.println("Error: No student file found by filereader\nCreating a new student file!");
+//                s.createNewFile();
+//            }
+//            File t = new File("C:\\Users\\ilies\\IdeaProjects\\studentteacherproj\\" + School.getName() + "\\Teachers.txt");
+//            if (t.exists()) {
+//                System.out.println("Teacher file location found by file reader");
+//            } else {
+//                System.out.println("Error: No teacher file found by filereader\nCreating a new teacher file!");
+//                t.createNewFile();
+//            }
+//        }
+
+    }
+    public School(int budget,int moneyEarned,int moneySpent){
+        this.budget=budget;
+        this.moneyEarned=moneyEarned;
+        this.moneySpent=moneySpent;
+        System.out.println("School with data succesfully initialized");
+    }
+
+
+
+    public void saveSchool() throws IOException {
+       int a = getBudget();
+       int b = getMoneyEarned();
+       int c = getMoneySpent();
+       School school = new School(a,b,c);
+       serializeSchool(school);
+    }
+    public static void searchSchool() throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("please enter school name:");
         name=scanner.nextLine();
         Path path = Paths.get("C:\\Users\\ilies\\IdeaProjects\\studentteacherproj\\"+name+"\\");
-
         if (Files.notExists(path)){
             Files.createDirectories(path);
             System.out.println("Checking for school directory...");
             System.out.println("None found.");
+            School school = new School();
             System.out.println("Creating new school directory!");
             File students = new File(path+"\\Students.txt");
             students.createNewFile();
             File teachers = new File(path+"\\Teachers.txt");
             teachers.createNewFile();
+            serializeSchool(school);
+            school.menu();
+
+
+
+
         }
         else if(Files.exists(path)){
 
@@ -53,14 +114,25 @@ public class School{
                 System.out.println("Error: No teacher file found by filereader\nCreating a new teacher file!");
                 t.createNewFile();
             }
+            deserializationSchool();
         }
-
     }
-
+    public static void serializeSchool(School school) throws IOException {
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("School.txt"));
+        oos.writeObject(school);
+        System.out.println(school.budget+" "+school.moneyEarned+" "+school.moneySpent);
+        oos.flush();
+        oos.close();
+    }
+    public static void deserializationSchool() throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("School.txt"));
+        School school = (School)ois.readObject();
+        System.out.println(school.budget+" "+ school.moneyEarned+" "+ school.moneySpent);
+        school.menu();
+    }
 /***********************************************************************
  *       TEXT BASED MENUS
  **********************************************************************/
-
     /**
      * Text menu for the Main Menu.
      */
@@ -327,13 +399,9 @@ public class School{
 //            System.out.println(listForReplacement.get(1));
         replaceInfoTeacher(listForReplacement.get(0),listForReplacement.get(1));
     }
-
-
-
 /***********************************************************************
  *      STUDENT METHODS
  **********************************************************************/
-
     public void saveStudent(String token){
         try (FileWriter fw = new FileWriter("C:\\Users\\ilies\\IdeaProjects\\studentteacherproj\\" + School.getName() + "\\Students.txt",true);
              BufferedWriter bw = new BufferedWriter(fw);
@@ -403,7 +471,10 @@ public class School{
         replaceInfo(listForReplacement.get(0),listForReplacement.get(1));
     }
     public void payCoursesStudent() throws IOException {
-        Student.payCourses();
+        int a =getBudget()+Student.payCourses();
+        setBudget(a);
+        setMoneyEarned(0);
+        saveSchool();
         listForReplacement.add(Student.toStringr());
         replaceInfo(listForReplacement.get(0),listForReplacement.get(1));
     }
@@ -486,7 +557,6 @@ public class School{
         boolean fileRename=tempFile.renameTo(file);
 
     }
-
     /***********************************************************************
      *     TEACHER METHODS
      **********************************************************************/
@@ -600,15 +670,31 @@ public class School{
         boolean fileRename=tempFile.renameTo(file);
 
     }
-
     /***********************************************************************
      *       GETTERS AND SETTERS
      **********************************************************************/
     public static String getName(){return name;}
+    public int getBudget(){return budget;}
+    public int getMoneyEarned(){return moneyEarned;}
+    public int getMoneySpent(){return moneySpent;}
 
-
-
-
-
+    public  void setBudget(int budget) {
+        this.budget = budget;
     }
+    public  void setMoneyEarned(int moneyEarned) {
+        this.moneyEarned = moneyEarned;
+    }
+    public  void setMoneySpent(int moneySpent){this.moneySpent=moneySpent;}
+
+
+
+    @Override
+    public String toString() {
+        return "School{" +
+                "budget=" + budget +
+                ", moneyEarned=" + moneyEarned +
+                ", moneySpent=" + moneySpent +
+                '}';
+    }
+}
 
