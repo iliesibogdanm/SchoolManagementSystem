@@ -560,8 +560,13 @@ public class School implements Serializable{
     /***********************************************************************
      *     TEACHER METHODS
      **********************************************************************/
-    public void readTeachers() throws FileNotFoundException {
-        FileReader fr = new FileReader("C:\\Users\\ilies\\IdeaProjects\\studentteacherproj\\" + School.getName() + "\\Teachers.txt");
+    public void readTeachers(){
+        FileReader fr = null;
+        try {
+            fr = new FileReader("C:\\Users\\ilies\\IdeaProjects\\studentteacherproj\\" + School.getName() + "\\Teachers.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         BufferedReader br = new BufferedReader(fr);
         try{
             String strCurrentLine;
@@ -569,8 +574,7 @@ public class School implements Serializable{
                 System.out.println(strCurrentLine);
             }
         }
-        catch (IOException e){e.printStackTrace();}
-        finally {
+        catch (IOException e){e.printStackTrace();} finally {
             try {
                 br.close();
             }catch (IOException ex){ex.printStackTrace();}
@@ -684,9 +688,6 @@ public class School implements Serializable{
     public  void setMoneyEarned(int moneyEarned) {
         this.moneyEarned = moneyEarned;
     }
-    public  void setMoneySpent(int moneySpent){this.moneySpent=moneySpent;}
-
-
 
     @Override
     public String toString() {
